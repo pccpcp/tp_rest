@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<title>Modifier une Ville</title>
+
+<style>
+body {
+	padding-top: 50px;
+}
+
+.special {
+	padding-top: 50px;
+}
+</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href=".">Modifier une ville.</a>
+				<ul class="nav navbar-nav navbar-right">
+				<li><a href="/">Calculer la distance</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/Modification">Modifier une ville</a></li>
+			</ul>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container special">
+
+		<h2 class="h2">Modification de la ville <span th:text="${ville.libelleAcheminement}"></span>.</h2>
+		<div>
+			<form method="post" th:action="@{/saveVille}" th:object="${ville}">
+			
+			<div class="form-group">
+					<input
+						type="hidden" th:field="*{codeCommune}" class="form-control">
+				</div>
+			
+				<div class="form-group">
+				<label for="codeCommuneInput">Code Commune :</label> 
+					<input
+						type="text" th:field="*{codeCommune}" class="form-control" id="codeCommuneInput" disabled>
+				</div>
+				
+				<div class="form-group">
+					<label for="codePostalInput">Code Postal :</label> 
+					<input
+						type="text" th:field="*{codePostal}" class="form-control" id="codePostalInput"
+						aria-describedby="codePostalHelp" placeholder="Saisir le code postal."> 
+						
+				</div>
+				
+				<div class="form-group">
+					<label for="ligneInput">Ligne :</label> 
+					<input
+						type="text" th:field="*{ligne}" class="form-control" id="ligneInput"
+						aria-describedby="ligneHelp" placeholder="Saisir la ligne de la ville."> 
+						
+				</div>
+				
+				<div class="form-group">
+					<label for="nomCommuneInput">Nom de la commune :</label> 
+					<input
+						type="text" th:field="*{nomCommune}" class="form-control" id="nomCommuneInput"
+						aria-describedby="nomCommuneHelp" placeholder="Saisir le nom de la commune."> 
+						
+				</div>
+				
+				<div class="form-group">
+					<label for="libelleInput">Nom de la ville :</label> 
+					<input
+						type="text" th:field="*{libelleAcheminement}" class="form-control" id="libelleInput"
+						aria-describedby="libelleHelp" placeholder="Saisir le nom de la ville."> 
+						
+				</div>
+				
+				<div class="form-group">
+					<label for="latitudeInput">Latitude de la ville :</label> 
+					<input
+						type="number" th:field="*{coordonnees.latitude}" class="form-control" id="latitudeInput"
+						aria-describedby="latitudeHelp" placeholder="Saisir la latitude de la ville."> 
+						
+				</div>
+				
+				<div class="form-group">
+					<label for="longitudeInput">Longitude de la ville :</label> 
+					<input
+						type="number" th:field="*{coordonnees.longitude}" class="form-control" id="longitudeInput"
+						aria-describedby="longitudeHelp" placeholder="Saisir la longitude de la ville."> 
+						
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Modifier</button>
+			</form>
+		</div>
+
+	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	
+
+<title>Projet Villes - Page 2</title>
+
+<style>
+	body {
+		padding-top: 50px;
+	}
+	.special {
+		padding-top:50px;
+	}
+</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href=".">Modifier des données.</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/">Calculer la distance</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+<div class="alert alert-warning py-2" th:if="${error != null}">
+    <p><strong><span th:text="${error}"></span></strong></p>
+</div>
+
+<div class="container special">
+  <h2 class="h2">Modifier des villes</h2>
+  
+  <div th:if="${villePage.totalPages > 0}" class="pagination"
+    th:each="pageNumber : ${pageNumbers}">
+    <a th:href="@{/Modification(size=${villePage.size}, page=${pageNumber})}"
+        th:text=${pageNumber}
+        th:class="${pageNumber==villePage.number + 1} ? active"></a>
+</div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-sm" border="1">
+    
+    <thead>
+        <tr>
+        <th>N°</th>
+        <th>Code Commune</th>
+          <th>Nom de Ville</th>
+          <th>Sélectionner pour modifier</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="ville, i : ${villePage.content}">
+        <td th:text="${i.index + 1}"></td>
+            <td><span th:text="${ville.codeCommune}"> Code Commune </span></td>
+          <td><span th:text="${ville.libelleAcheminement}"> Nom </span></td>
+          <td>
+            <a th:href="@{/modifierVille/{codeCommune}(codeCommune=${ville.codeCommune})}"><button class="btn btn-info">Modifier</button></a>
+          </td>
+        </tr>
+    </tbody>
+</table>
+
+      
+  </div>
+
+</div>
+	
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+</body>
+</html>

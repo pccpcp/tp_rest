@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<title>Projet Villes - Page 1</title>
+
+<style>
+	body {
+		padding-top: 50px;
+	}
+	.special {
+		padding-top:50px;
+	}
+	.scrollit {
+    Overflow-y:scroll;
+    height:140px;
+	}
+	.alert {
+  	margin-bottom: -50px;
+	}
+	.special {
+  	margin-top: -20px;
+	}
+</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href=".">Calcul de distance entre 2 villes (en km).</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/Modification">Modifier des villes</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+<div class="alert alert-warning py-2" th:if="${error != null}">
+    <p><strong><span th:text="${error}"></span></strong></p>
+</div>
+
+<div class="alert alert-success py-2" th:if="${distance != null}">
+    <p>La distance entre <span th:text="${prVille.libelleAcheminement}"></span> et <span th:text="${dxVille.libelleAcheminement}"></span> est de <strong><span th:text="${distance}"></span> kilomètres</strong>.</span></p>
+</div>
+
+<div th:if="${listeVilles != null}">
+<form th:action="@{/CalculDistance}" method="POST">
+	<div class="container special py-2">
+		<h2 class="h2">Choisissez la première ville :</h2>
+		<div class="table-responsive">
+			<div class="scrollit">
+				<table class="table table-striped table-sm">
+					<thead>
+						<tr>
+							<th>Code Commune</th>
+							<th>Nom Ville</th>
+							<th>Sélectionner la première ville</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:if="${listeVilles.empty}">
+							<td colspan="3">Aucune ville trouvée !</td>
+						</tr>
+						<tr th:each="ville: ${listeVilles}">
+							<td><span th:text="${ville.codeCommune}"> Code Commune </span></td>
+							<td><span th:text="${ville.libelleAcheminement}"> Nom de la ville </span></td>
+							<td>
+								<input type="radio" th:id="${ville.codeCommune}" th:name="ville1" th:value="${ville.codeCommune}">						
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>	
+	
+		<h2 class="h2">Choisissez la deuxième ville :</h2>
+		<div class="table-responsive">
+			<div class="scrollit">
+				<table class="table table-striped table-sm">
+					<thead>
+						<tr>
+							<th>Code Commune</th>
+							<th>Nom Ville</th>
+							<th>Sélectionner la deuxième ville</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:if="${listeVilles.empty}">
+							<td colspan="3">Aucune ville trouvée !</td>
+						</tr>
+						<tr th:each="ville: ${listeVilles}">
+							<td><span th:text="${ville.codeCommune}"> Code Commune </span></td>
+							<td><span th:text="${ville.libelleAcheminement}"> Nom de la ville </span></td>
+							<td>
+								<input type="radio" th:id="${ville.codeCommune}" th:name="ville2" th:value="${ville.codeCommune}">						
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+	
+	<br>
+	
+	<div style="text-align: center;">
+		<button class="btn btn-info" type="submit">Calculer la distance</button>
+	</div>
+</form>
+</div>
+	
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+</body>
+</html>
