@@ -10,7 +10,7 @@ public class ProjetIhmApplication {
 		SpringApplication.run(ProjetIhmApplication.class, args);
 		System.out.println("RUNNING ! IHM");
 		System.out.println("RUNNING ! IHM");
-		System.out.println("RUNNING ! IHM");
+		
 	}
 	
  
