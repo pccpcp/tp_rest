@@ -49,6 +49,10 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		 -->
+		 <dependency>
+  			<groupId>mysql</groupId>
+  			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
 		 
 		 <!-- lombok -->
 		<dependency>
@@ -57,7 +61,7 @@
 		</dependency>
 	</dependencies>
 
-	<build>	
+		<build>	
 	    <plugins>
 	        <plugin>
 	            <artifactId>maven-resources-plugin</artifactId>
